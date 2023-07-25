@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: telegram-bot
+    runtime: docker
+    plan: free
+    repo: https://github.com/nrmnco/NewsBot.git
+    region: frankfurt
+    branch: main
+    envVars:
+      BOT_TOKEN: ${SECRET.BOT_TOKEN}
+      MONGO_USERNAME: ${SECRET.MONGO_USERNAME}
+      MONGO_PASSWORD: ${SECRET.MONGO_PASSWORD}
+      MONGO_CLUSTER: ${SECRET.MONGO_CLUSTER}
+      CURRENT_SCHEMA_VERSION: ${SECRET.CURRENT_SCHEMA_VERSION}
+      OPENAI_API_KEY: ${SECRET.OPENAI_API_KEY}
+      SERP_API_KEY: ${SECRET.SERP_API_KEY}
+    buildFilter:
+      paths:
+        - app/**
